@@ -15,7 +15,7 @@
     	$("#loader").fadeOut("slow", function(){
 
         // will fade out the whole DIV that covers the website.
-        $("#preloader").delay(300).fadeOut("slow");
+        $("#preloader").delay(100).fadeOut("slow");
 
       });     
 
@@ -24,7 +24,7 @@
    /*---------------------------------------------------- */
 	/* Final Countdown Settings
 	------------------------------------------------------ */
-	var finalDate = '2017/01/01';
+	var finalDate = '2023/09/15';
 
 	$('div#counter').countdown(finalDate)
    	.on('update.countdown', function(event) {
@@ -152,9 +152,9 @@
 	/*---------------------------------------------------- */
 	/* Map
 	------------------------------------------------------ */
-	var latitude = 14.549072,
-		 longitude = 121.046958,
-		 map_zoom = 15,		 
+	var latitude = 0.319961,
+		longitude = 32.612608,
+		 map_zoom = 30,		 
 		 main_color = '#d8ac00',
 		 saturation_value= -30,
 		 brightness_value= 5,
