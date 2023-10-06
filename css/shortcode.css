@@ -2452,7 +2452,7 @@ div:hover > .cmt-box-view-overlay:before, div:hover > .cmt-box-view-content-inne
     -webkit-transition: opacity 400ms;
     transform: translateZ(0)!important;
     -webkit-transform: translateZ(0)!important;
-    border: 1px solid rgba(146,190,80,.70);
+    border: 1px solid rgb(215, 100, 13);
     padding: 5px;
 }
 
