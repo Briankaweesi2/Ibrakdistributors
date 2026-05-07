@@ -366,10 +366,29 @@ jQuery(function($) {
 
     });
     $(document).ready(function() {
-    
+        // Intercept all generic broken links to open WhatsApp
+        $('a[href="#"]').not('.mega-menu-link, .search_btn, .close_btn, .toggle-title a, .portfolio-filter a').attr('href', 'https://wa.me/256701530658').attr('target', '_blank');
 
-    $('body').append(e);
-});
+        // Floating WhatsApp icon
+        var waIcon = '<a href="https://wa.me/256701530658" target="_blank" class="floating-wa" style="position:fixed;bottom:80px;right:20px;background-color:#25d366;color:white;border-radius:50%;width:60px;height:60px;text-align:center;font-size:35px;line-height:60px;z-index:1000;box-shadow: 2px 2px 5px #999;"><i class="fa fa-whatsapp"></i></a>';
+        $('body').append(waIcon);
+
+        // Form interception for WhatsApp
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var text = "Hello, I have an inquiry:\n";
+            form.find('input, textarea, select').each(function() {
+                var name = $(this).attr('name') || $(this).attr('id') || $(this).attr('placeholder') || 'Field';
+                var val = $(this).val();
+                if (val && $(this).attr('type') !== 'submit' && $(this).attr('type') !== 'hidden') {
+                    text += name + ": " + val + "\n";
+                }
+            });
+            var waUrl = "https://wa.me/256701530658?text=" + encodeURIComponent(text);
+            window.open(waUrl, '_blank');
+        });
+    });
     
 
     
