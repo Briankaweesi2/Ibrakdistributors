@@ -1,0 +1,12 @@
+{
+  "name": "ibrakdistributors",
+  "version": "1.0.0",
+  "description": "Ibrak Distributors Static Website",
+  "scripts": {
+    "build": "echo 'No build necessary for static HTML project'",
+    "vercel-build": "echo 'No build necessary for static HTML project'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
