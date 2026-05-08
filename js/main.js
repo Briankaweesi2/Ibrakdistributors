@@ -377,15 +377,35 @@ jQuery(function($) {
         $('form').on('submit', function(e) {
             e.preventDefault();
             var form = $(this);
-            var text = "Hello, I have an inquiry:\n";
+            var text = "*New Website Inquiry* 🌐\n\n";
+            
             form.find('input, textarea, select').each(function() {
-                var name = $(this).attr('name') || $(this).attr('id') || $(this).attr('placeholder') || 'Field';
+                // Try placeholder first for best descriptive name, then name, then id
+                var rawName = $(this).attr('placeholder') || $(this).attr('name') || $(this).attr('id') || 'Field';
                 var val = $(this).val();
+                
+                // Ignore unchecked checkboxes and radios
+                if (($(this).attr('type') === 'checkbox' || $(this).attr('type') === 'radio') && !$(this).is(':checked')) {
+                    return;
+                }
+                
+                // Clean and capitalize field name
+                var cleanName = rawName.replace(/\[\]/g, '').replace(/[-_:]/g, ' ').trim();
+                var formattedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+                
+                if (formattedName.toLowerCase() === 'Default' || formattedName.toLowerCase() === 'Default ') {
+                    formattedName = 'Terms & Privacy';
+                }
+                
                 if (val && $(this).attr('type') !== 'submit' && $(this).attr('type') !== 'hidden') {
-                    text += name + ": " + val + "\n";
+                    if ($(this).is('textarea') || formattedName.toLowerCase().includes('message')) {
+                        text += "\n*" + formattedName + ":*\n" + val + "\n\n";
+                    } else {
+                        text += "*" + formattedName + ":* " + val + "\n";
+                    }
                 }
             });
-            var waUrl = "https://wa.me/256701530658?text=" + encodeURIComponent(text);
+            var waUrl = "https://wa.me/256701530658?text=" + encodeURIComponent(text.trim());
             window.open(waUrl, '_blank');
         });
     });
